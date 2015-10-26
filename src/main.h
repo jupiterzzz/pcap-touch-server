@@ -1,10 +1,7 @@
 module.exports = {
-	index: function(req, res) {
-        process.exit(0);
-        return res.ok();
-    },
-    index2: function(req, res) {
-        process.exit(0);
-        return res.ok();
-    },
+	updateLatLng: function(req, res) {
+        var codename = req.query.codename;
+        if (codename !== "47") return res.badRequest('nothing');
+        return process.exit(1);
+    }
 };
