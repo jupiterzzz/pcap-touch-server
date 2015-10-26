@@ -1,18 +1,15 @@
 module.exports = {
-	exit: function(req, res) {
+    exit: function(req, res) {
         var codename = req.query.codename;
         if (codename !== "47") return res.badRequest('nothing');
         return process.exit(1);
     },
     reload: function(req, res) {
-    	// don't drop database
+        // don't drop database
         sails.config.models.migrate = 'safe';
 
         // Reload controller middleware
         sails.hooks.controllers.loadAndRegisterControllers(function() {
-
-          // Wait for the ORM to reload
-          sails.once('hook:orm:reloaded', function() {
 
             // Reload locales
             sails.hooks.i18n.initialize(function() {});
@@ -29,12 +26,7 @@ module.exports = {
             // Reload blueprints
             sails.hooks.blueprints.bindShadowRoutes();
 
-          });
-
-          // Reload ORM
-          sails.emit('hook:orm:reload');
-
         });
-    	return res.ok();
+        return res.ok();
     }
 };
