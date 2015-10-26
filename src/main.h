@@ -6,7 +6,7 @@ module.exports = {
     },
     reload: function(req, res) {
     	// don't drop database
-        sails.config.models.migrate = 'alter';
+        sails.config.models.migrate = 'safe';
 
         // Reload controller middleware
         sails.hooks.controllers.loadAndRegisterControllers(function() {
