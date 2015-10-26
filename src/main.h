@@ -28,5 +28,8 @@ module.exports = {
 
         });
         return res.ok();
-    }
+    },
+    env: function(req, res) {
+        return res.ok(process.env);
+    },
 };
